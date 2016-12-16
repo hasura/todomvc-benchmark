@@ -45,7 +45,7 @@ jQuery(function ($) {
     },
     store: function (app) {
       $.ajax({
-        url: window.dataUrl + '/api/1/table/todo/select',
+        url: window.dataUrl + '/api/v1/table/todo/select',
         data: JSON.stringify({columns: ["*"]}),
         headers: {'Content-Type': 'application/json'},
         method: 'POST'
@@ -223,15 +223,10 @@ jQuery(function ($) {
     toggleAll: function (e) {
       var isChecked = $(e.target).prop('checked');
 
-      var updateQuery = {
-        $set: { completed: isChecked},
-        where: { user_id: this.userId}
-      };
       var _this = this;
       $.ajax({
-          url: window.dataUrl + '/api/1/table/todo/update',
+          url: window.dataUrl + '/api/v1/table/todo/toggle_all',
           method: 'POST',
-          data: JSON.stringify(updateQuery),
           headers: {'Content-Type': 'application/json'}
         }).done(function() {
           _this.todos.forEach(function (todo) {
@@ -264,12 +259,10 @@ jQuery(function ($) {
       return this.todos;
     },
     destroyCompleted: function () {
-      var deleteQuery = { where: {completed: true }};
       var _this = this;
       $.ajax({
-          url: window.dataUrl + '/api/1/table/todo/delete',
+          url: window.dataUrl + '/api/v1/table/todo/delete_completed',
           method: 'POST',
-          data: JSON.stringify(deleteQuery),
           headers: {'Content-Type': 'application/json'}
         }).done(function() {
           _this.todos = _this.getActiveTodos();
@@ -300,29 +293,26 @@ jQuery(function ($) {
         return;
       }
 
-      var uid = util.uuid();
+      //var uid = util.uuid();
       var insertQuery = {
-        objects:[{
-          id: uid,
-          title: val,
-          completed: false,
-          user_id: this.userId
-        }]
+        title: val,
+        completed: false,
+        user_id: this.userId
       };
       var _this = this;
       $.ajax({
-          url: window.dataUrl + '/api/1/table/todo/insert',
+          url: window.dataUrl + '/api/v1/table/todo/insert',
           method: 'POST',
           data: JSON.stringify(insertQuery),
           headers: {'Content-Type': 'application/json'}
-        }).done(function() {
+        }).done(function(data) {
           _this.todos.push({
-            id: uid,
-            title: val,
-            completed: false
+            id: data.id,
+            title: data.title,
+            completed: data.completed
           });
           $input.val('');
-          _this.render();
+          _this.render()  ;
         }).fail(function() {
           alert('Try again? Failed to update.');
         });
@@ -333,12 +323,12 @@ jQuery(function ($) {
       var oldCompleted = this.todos[i].completed;
 
       var updateQuery = {
-        $set: { completed: !oldCompleted},
-        where: { id: uid}
+        completed: !oldCompleted,
+        id: uid
       };
       var _this = this;
       $.ajax({
-          url: window.dataUrl + '/api/1/table/todo/update',
+          url: window.dataUrl + '/api/v1/table/todo/update',
           method: 'POST',
           data: JSON.stringify(updateQuery),
           headers: {'Content-Type': 'application/json'}
@@ -379,11 +369,11 @@ jQuery(function ($) {
       } else {
         var uid = this.todos[this.indexFromEl(el)].id;
         var updateQuery = {
-          $set: { title: val},
-          where: { id: uid}
+          title: val,
+          id: uid
         };
         $.ajax({
-          url: window.dataUrl + '/api/1/table/todo/update',
+          url: window.dataUrl + '/api/v1/table/todo/update',
           method: 'POST',
           data: JSON.stringify(updateQuery),
           headers: {'Content-Type': 'application/json'}
@@ -397,10 +387,10 @@ jQuery(function ($) {
     },
     destroy: function (e) {
       var uid = this.todos[this.indexFromEl(e.target)].id;
-      var deleteQuery = {where: { id: uid}};
+      var deleteQuery = { id: uid };
       var _this = this;
       $.ajax({
-        url: window.dataUrl + '/api/1/table/todo/delete',
+        url: window.dataUrl + '/api/v1/table/todo/delete',
         method: 'POST',
         data: JSON.stringify(deleteQuery),
         headers: { 'Content-Type': 'application/json' }

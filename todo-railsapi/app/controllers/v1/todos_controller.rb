@@ -1,73 +1,52 @@
-#Credits: https://github.com/smidwap/todomvc_on_rails
-module v1
+module V1
   class TodosController < ApplicationController
-    helper_method :current_filter
 
-    def index
-      @todos = Todo
+    def select
+      @todos = current_user.todos.all
+
+      render json: @todos
     end
 
-    def active
-      @todos = Todo.active
+    def insert
+      @todo = current_user.todos.build(todo_params)
+      @todo.save!
 
-      set_current_filter(:active)
-
-      render :index
-    end
-
-    def completed
-      @todos = Todo.completed
-
-      set_current_filter(:completed)
-
-      render :index
-    end
-
-    def create
-      @todo = Todo.new(todo_params)
-      @todo.save
+      render json: @todo
     end
 
     def update
-      @todo = Todo.find(params[:id])
-      @todo.update(todo_params)
+      @todo = current_user.todos.find(params[:id])
+      @todo.update!(todo_params)
+
+      render json: @todo
     end
 
-    def destroy_completed
-      @todos_for_destruction = Todo.completed.all
-      
-      Todo.completed.destroy_all
+    def delete_completed
+      @todos_for_destruction = current_user.todos.completed.all
+      @todos_for_destruction.destroy_all
+
+      render json: { message: "Destroyed all completed todos" }
     end
 
-    def destroy
-      @todo = Todo.find(params[:id])
+    def delete
+      @todo = current_user.todos.find(params[:id])
       @todo.destroy
-    end
 
-    def toggle
-      @todo = Todo.find(params[:id])
-      @todo.toggle!(:completed)
+      render json: { message: "Deleted todo: #{params[:id]}" }
     end
 
     def toggle_all
-      Todo.update_all(completed: params[:completed] ? 't' : 'f')
+      @todos = current_user.todos.update_all(completed: 't')
 
-      @todos = Todo.all
+      render json: { message: "Deleted todo: #{params[:id]}" }
     end
 
   private
 
     def todo_params
-      params.require(:todo).permit(:title, :completed)
+      params.permit(:title, :completed)
     end
 
-    def set_current_filter(filter)
-      @current_filter = filter
-    end
-
-    def current_filter
-      @current_filter
-    end
   end
   
 end

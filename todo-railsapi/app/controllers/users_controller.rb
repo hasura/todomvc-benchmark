@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   def login
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
-      byebug
       session[:user_id] = user.id
       render json: { hasura_id: user.id }
     else  
