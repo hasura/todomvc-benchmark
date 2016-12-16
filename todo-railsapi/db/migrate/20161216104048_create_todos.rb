@@ -1,9 +1,10 @@
 class CreateTodos < ActiveRecord::Migration[5.0]
   def change
     create_table :todos do |t|
-      t.integer :user_id
+      t.belongs_to :user, index: true
       t.string :title
       t.boolean :complete, default: false, null: false
+      t.timestamps
     end
   end
 end
