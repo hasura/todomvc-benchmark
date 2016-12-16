@@ -3,7 +3,7 @@ class CreateTodos < ActiveRecord::Migration[5.0]
     create_table :todos do |t|
       t.belongs_to :user, index: true
       t.string :title
-      t.boolean :complete, default: false, null: false
+      t.boolean :completed, default: false, null: false
       t.timestamps
     end
   end

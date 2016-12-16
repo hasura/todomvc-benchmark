@@ -15,10 +15,12 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :table, only: [] do
         resource :todo, only: [] do
+          post 'select'
+          post 'insert'
           post 'update'
           post 'delete'
-          post 'insert'
-          post 'select'
+          post 'delete_completed'
+          post 'toggle_all'
         end
       end
     end

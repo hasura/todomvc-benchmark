@@ -3,9 +3,12 @@ class UsersController < ApplicationController
   before_action :return_unless_loggedin , only: [:info, :logout]
 
   def login
-    user = User.find_by(email: params[:email].downcase)
+    user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      render json: { hasura_id: user.id }
+    else  
+      render json: { message: "Unable to authenticate user"}, status: 401
     end
   end
 
@@ -15,8 +18,9 @@ class UsersController < ApplicationController
   end
 
   def signup
-    user = User.new(username: params[:username], password: params[:pwd])
+    user = User.new(username: params[:username], password: params[:password])
     if user.save
+      session[:user_id] = user.id
       render json: { message: "Success" }, status: 201
     else
       render json: user.errors.full_messages, status: 400
