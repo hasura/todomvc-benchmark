@@ -11,7 +11,6 @@ app.get('/', (req, res) => {
       return;
     }
 
-    console.log('bullshit');
     if (req.hostname.split('.')[2] !== 'hasura-app') {
       console.log('INVALID: Not running on a hasura-app.io domain!');
       res.status(400).send('Not running on a hasura-app.io domain.');
