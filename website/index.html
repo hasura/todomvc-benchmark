@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Benchmark | Hasura</title>
+
+    <!-- Bootstrap -->
+    <link href="dist/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="main">
+      <h1 class="text-center">Comparing API backends for a Todo app</h1>
+      <br/><br/>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-xs-offset-3">
+            This is an attempt to compare how different backend development &amp; deployment solutions
+            compare to each other and compare to a backend developed &amp; deployed with Hasura.
+            <br/><br/>
+            The backing code repository for how these metrics were measured can be found here: <a href="">github.com/hasura/todomvc-benchmark</a>.
+          </div>
+        </div>
+      </div>
+      <br/><br/>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th> </th>
+              <th> HASURA </th>
+              <th> DJANGO </th>
+              <th> DJANGO + HEROKU </th>
+              <th> RAILS </th>
+              <th> RAILS + HEROKU </th>
+              <th> FIREBASE </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th> Hardware config ($40) </th>
+              <td> 4GB RAM, 2x CPU </td>
+              <td> 4GB RAM, 2x CPU </td>
+              <td> 2x 1GB Dyno </td>
+              <td> 4GB RAM, 2x CPU </td>
+              <td> 2x 1GB Dyno </td>
+              <td> Unknown (upto 100 req/s) </td>
+            </tr>
+            <tr>
+              <th> Lines of code (backend) </th>
+              <td> 30 </td>
+              <td> 500 </td>
+              <td> 500 </td>
+              <td> 500 </td>
+              <td> 500 </td>
+              <td> 0 (No version control) </td>
+            </tr>
+            <tr>
+              <th> Throughput (req/s) </th>
+              <td> 100 </td>
+              <td> 50 </td>
+              <td> 50 </td>
+              <td> 50 </td>
+              <td> 50 </td>
+              <td> 50 </td>
+            </tr>
+            <tr>
+              <th> Concurrency (conn/sec) </th>
+              <td> 3000 </td>
+              <td> 500 </td>
+              <td> 500 </td>
+              <td> 500 </td>
+              <td> 500 </td>
+              <td> 50 </td>
+            </tr>
+            <tr>
+              <th> ORM complexity </th>
+              <td> SQL power w/o overhead </td>
+              <td> SQL power w/ overhead </td>
+              <td> SQL power w/ overhead </td>
+              <td> Need raw SQL for complex cases </td>
+              <td> Need raw SQL for complex cases </td>
+              <td> No relationships/joins </td>
+            </tr>
+            <tr>
+              <th> Deployment complexity </th>
+              <td> git </td>
+              <td> git, ssh, supervisord, python, nginx, postgres </td>
+              <td> git </td>
+              <td> git, ssh, supervisord, ruby, nginx, postgres </td>
+              <td> git </td>
+              <td> No version control based deployments </td>
+            </tr>
+            <tr>
+              <th> Source code </th>
+              <td> <a href="">todomvc-benchmark/hasura</a> </td>
+              <td> <a href="">todomvc-benchmark/django</a> </td>
+              <td> <a href="">todomvc-benchmark/django-heroku</a> </td>
+              <td> <a href="">todomvc-benchmark/rails</a> </td>
+              <td> <a href="">todomvc-benchmark/rails-heroku</a> </td>
+              <td> <a href="">todomvc-benchmark/firebase</a> </td>
+            </tr>
+            <tr>
+              <th> Demo </th>
+              <td> <a href="">demo/hasura</a> </td>
+              <td> <a href="">demo/django</a> </td>
+              <td> <a href="">demo/django-heroku</a> </td>
+              <td> <a href="">demo/rails</a> </td>
+              <td> <a href="">demo/rails-heroku</a> </td>
+              <td> <a href="">demo/firebase</a> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- script src="js/bootstrap.min.js"></script -->
+  </body>
+</html>
