@@ -3756,3 +3756,11 @@ input[type="button"].btn-block {
 #main td {
   padding: 20px;
 }
+#main th span.best,
+#main td span.best {
+  color: #90a91a;
+  font-size: 20px;
+  margin-left: 16px;
+  top: 4px;
+  display: none;
+}

@@ -53,20 +53,20 @@
               <td> 2x 1GB Dyno </td>
               <td> 4GB RAM, 2x CPU </td>
               <td> 2x 1GB Dyno </td>
-              <td> Unknown (upto 100 req/s) </td>
+              <td> Blaze plan </td>
             </tr>
             <tr>
               <th> Lines of code (backend) </th>
-              <td> 30 </td>
+              <td> 30 <span class="best glyphicon glyphicon-thumbs-up"></span></td>
               <td> 500 </td>
               <td> 500 </td>
               <td> 500 </td>
               <td> 500 </td>
-              <td> 0 (No version control) </td>
+              <td> 100 </td>
             </tr>
             <tr>
               <th> Throughput (req/s) </th>
-              <td> 100 </td>
+              <td> 100 <span class="best glyphicon glyphicon-thumbs-up"></span></td>
               <td> 50 </td>
               <td> 50 </td>
               <td> 50 </td>
@@ -75,7 +75,7 @@
             </tr>
             <tr>
               <th> Concurrency (conn/sec) </th>
-              <td> 3000 </td>
+              <td> 3000 <span class="best glyphicon glyphicon-thumbs-up"></span></td>
               <td> 500 </td>
               <td> 500 </td>
               <td> 500 </td>
@@ -84,7 +84,7 @@
             </tr>
             <tr>
               <th> ORM complexity </th>
-              <td> SQL power w/o overhead </td>
+              <td> SQL power w/o overhead <span class="best glyphicon glyphicon-thumbs-up"></span></td>
               <td> SQL power w/ overhead </td>
               <td> SQL power w/ overhead </td>
               <td> Need raw SQL for complex cases </td>
@@ -92,13 +92,31 @@
               <td> No relationships/joins </td>
             </tr>
             <tr>
+              <th> Database configuration</th>
+              <td> No config reqiured <span class="best glyphicon glyphicon-thumbs-up"></span> </td>
+              <td> postgres </td>
+              <td> No config required </td>
+              <td> postgres </td>
+              <td> No config required </td>
+              <td> N/A </td>
+            </tr>
+            <tr>
+              <th> Webserver/SSL configuration</th>
+              <td> Auto <span class="best glyphicon glyphicon-thumbs-up"></span> </td>
+              <td> nginx, manual SSL certs </td>
+              <td> Auto, manual SSL certs </td>
+              <td> nginx, manual SSL certs </td>
+              <td> Auto, manual SSL certs </td>
+              <td> Auto </td>
+            </tr>
+            <tr>
               <th> Deployment complexity </th>
+              <td> git <span class="best glyphicon glyphicon-thumbs-up"></span> </td>
+              <td> git, ssh, supervisord/docker, python, nginx, postgres </td>
               <td> git </td>
-              <td> git, ssh, supervisord, python, nginx, postgres </td>
+              <td> git, ssh, supervisord/docker, ruby, nginx, postgres </td>
               <td> git </td>
-              <td> git, ssh, supervisord, ruby, nginx, postgres </td>
-              <td> git </td>
-              <td> No version control based deployments </td>
+              <td> (static content only) firebase-cli </td>
             </tr>
             <tr>
               <th> Source code </th>
