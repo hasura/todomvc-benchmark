@@ -22,13 +22,26 @@ SECRET_KEY = '66q!rmq+p*)(6v8$$ft+8p^e4l%bbv=e$vs15=hav$%z(foanq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.6/howto/static-files/
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 # Static files dir
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+STATIC_URL = '/static/'
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 TEMPLATES = [
@@ -95,10 +108,20 @@ WSGI_APPLICATION = 'todo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
+dbname = os.environ.get('DBNAME', 'todomvc_django')
+dbuser = os.environ.get('DBUSER', 'postgres')
+dbpass = os.environ.get('DBPASS', '')
+dbhost = os.environ.get('DBHOST', 'postgres')
+dbport = os.environ.get('DBPORT', 5432)
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': dbname,
+        'USER': dbuser,
+        'PASSWORD': dbpass,
+        'HOST': dbhost,
+        'PORT': dbport
     }
 }
 
@@ -114,12 +137,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
-
-STATIC_URL = '/static/'
 
 
 REST_AUTH_SERIALIZERS = {
