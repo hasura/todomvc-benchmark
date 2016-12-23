@@ -76,10 +76,6 @@
         <script src="{% static 'js/jquery/dist/jquery.js' %}"></script>
         <script src="{% static 'js/handlebars/dist/handlebars.js' %}"></script>
         <script src="{% static 'js/director/build/director.js' %}"></script>
-        {% csrf_token %}
-        <script>
-          var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
-        </script>
         <script src="{% static 'js/app.js' %}"></script>
     </body>
 </html>
