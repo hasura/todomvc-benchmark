@@ -3,8 +3,6 @@ TodoMVC Backend Using Django Rest Framework
 
 This project, is an implementation of the popular [TodoMVC](http://todomvc.com/) and a backend built using [Django Rest Framework](http://www.django-rest-framework.org/).
 
-![TodoMVC Rest Framework](https://raw.githubusercontent.com/AxiaCore/todomvc-django/master/DjangoTodoMvc.jpg)
-
 <hr />
 
 ## Quick Start
