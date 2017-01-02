@@ -1,0 +1,12 @@
+*.log
+*.pot
+*.pyc
+local_settings.py
+
+# Ignore database
+db.sqlite3
+
+# Python related
+**/venv
+**/.ropeproject
+**/__pycache__
