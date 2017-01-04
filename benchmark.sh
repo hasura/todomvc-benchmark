@@ -4,7 +4,7 @@ OPTIND=1
 
 CONCURRENCY=20
 NUMREQUESTS=400
-SESSION_COOKIE=''
+SESSION_COOKIE="''"
 
 while getopts "c:C:n:t:" opt; do
   case "$opt" in
@@ -76,6 +76,7 @@ esac
 
 for test in "${!AB_CMDS[@]}"
 do
+  echo "${AB_CMDS[$test]}"
   RESULT=`eval ${AB_CMDS[$test]}`
   echo
   echo "---------------------------------------------------"
