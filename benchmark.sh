@@ -1,49 +1,82 @@
 #!/bin/bash
 
-if [ -z "$1" ]
+OPTIND=1
+
+CONCURRENCY=20
+NUMREQUESTS=400
+SESSION_COOKIE="''"
+
+while getopts "c:C:n:t:" opt; do
+  case "$opt" in
+    c)
+      CONCURRENCY=${OPTARG}
+      ;;
+    n)
+      NUMREQUESTS=${OPTARG}
+      ;;
+    C)
+      SESSION_COOKIE=${OPTARG}
+      ;;
+    t)
+      TEST=${OPTARG}
+      ;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+echo "Project: $TEST"
+
+declare -A TEST_SERVERS
+TEST_SERVERS=(
+  [rails_bm]="104.198.99.32"
+  [rails_heroku]="https://peaceful-spire-96451.herokuapp.com/"
+  [django]="104.198.99.32"
+  [hasura]="warble80.hasura-app.io"
+)
+
+SERVER="${TEST_SERVERS[$TEST]}"
+
+if [ -z "$SERVER" ]
   then
-    printf "No server provided!! \nUsage ./benchmark.sh <server_addr> <session_cookie>\n"
+    printf "No server provided!! \nUsage ./benchmark.sh -t <backend_type> -C <session_cookie>\n"
     exit 1
 fi
 
-if [ -z "$2" ]
-  then
-    printf "No session cookie provided!! \nUsage ./benchmark.sh <server_addr> <session_cookie>\n"
-    exit 1
-fi
-
-
-SERVER=$1
-SESSION_COOKIE=$2
+echo "Test: $TEST"
+echo "Server: $SERVER"
+echo "Concurrency: $CONCURRENCY"
+echo "Num of Requests: $NUMREQUESTS"
 
 declare -A AB_CMDS
-AB_RAILS_CMDS=(
- [GET_ACCOUNT_INFO]="ab -k -q -c 20 -n 200 -C $SESSION_COOKIE $SERVER/user/account/info"
- [INSERT]="ab -k -q -c 20 -n 200 -p insert_data -T 'application/json' -C $SESSION_COOKIE $SERVER/api/v1/table/todo/insert"
- [UPDATE]="ab -k -q -c 20 -n 200 -p update_data -T 'application/json' -C $SESSION_COOKIE $SERVER/api/v1/table/todo/update"
- [UPDATE_ALL]="ab -k -q -c 20 -n 200 -p update_data -T 'application/json' -C $SESSION_COOKIE $SERVER/api/v1/table/todo/delete_completed"
-)
 
-
-#For django
-AB_DJANGO_CMDS=(
- [GET_ACCOUNT_INFO]="ab -k -q -c 20 -n 200 -C $SESSION_COOKIE $SERVER/auth/user/"
- [INSERT]="ab -k -q -c 20 -n 200 -p insert_data -T 'application/json' -C $SESSION_COOKIE $SERVER/api/tasks/"
- [UPDATE]="ab -k -q -c 20 -n 200 -p update_data -m 'PATCH' -T 'application/json' -C $SESSION_COOKIE $SERVER/api/tasks/"
- [UPDATE_ALL]="ab -k -q -c 20 -n 200 -p update_data -T 'application/json' -C $SESSION_COOKIE $SERVER/api/tasks/delete-completed"
-)
-
-#For hasura
-AB_CMDS=(
- [GET_ACCOUNT_INFO]="ab -k -q -c 200 -n 2000 -C $SESSION_COOKIE $SERVER/user/account/info"	#Use auth server
- [INSERT]="ab -k -q -c 200 -n 2000 -p insert_data -T 'application/json' -C $SESSION_COOKIE $SERVER/api/1/table/todo/insert"
- [UPDATE]="ab -k -q -c 200 -n 2000 -p update_data -T 'application/json' -C $SESSION_COOKIE $SERVER/api/1/table/todo/update"
- [UPDATE_ALL]="ab -k -q -c 200 -n 2000 -p delete_completed -T 'application/json' -C $SESSION_COOKIE $SERVER/api/1/table/todo/delete"
-)
-
+case $TEST in
+  rails_bm|rails_heroku)
+    AB_CMDS[GET_ACCOUNT_INFO]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -C $SESSION_COOKIE $SERVER/user/account/info"
+    AB_CMDS[SELECT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p select_data_rails -T 'application/json' -C $SESSION_COOKIE $SERVER/api/v1/table/todo/select"
+    AB_CMDS[INSERT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p insert_data_rails -T 'application/json' -C $SESSION_COOKIE $SERVER/api/v1/table/todo/insert"
+    AB_CMDS[UPDATE]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p update_data_rails -T 'application/json' -C $SESSION_COOKIE $SERVER/api/v1/table/todo/update"
+    AB_CMDS[UPDATE_ALL]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p update_data_rails -T 'application/json' -C $SESSION_COOKIE $SERVER/api/v1/table/todo/delete_completed"
+    ;;
+  django)
+    AB_CMDS[GET_ACCOUNT_INFO]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -C $SESSION_COOKIE $SERVER/auth/user/"
+    AB_CMDS[SELECT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -C $SESSION_COOKIE $SERVER/api/tasks"
+    AB_CMDS[INSERT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p insert_data_django -T 'application/json' -C $SESSION_COOKIE $SERVER/api/tasks/"
+    AB_CMDS[UPDATE]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p update_data_django -m 'PATCH' -T 'application/json' -C $SESSION_COOKIE $SERVER/api/tasks/"
+    AB_CMDS[UPDATE_ALL]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p update_data_django -T 'application/json' -C $SESSION_COOKIE $SERVER/api/tasks/delete-completed"
+    ;;
+  hasura)
+    AB_CMDS[GET_ACCOUNT_INFO]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -C $SESSION_COOKIE https://auth.$SERVER/user/account/info"	#Use auth server
+    AB_CMDS[SELECT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p select_data_hasura -T 'application/json' -C $SESSION_COOKIE https://data.$SERVER/api/1/table/todo/select"
+    AB_CMDS[INSERT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p insert_data_hasura -T 'application/json' -C $SESSION_COOKIE https://data.$SERVER/api/1/table/todo/insert"
+    AB_CMDS[UPDATE]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p update_data_hasura -T 'application/json' -C $SESSION_COOKIE https://data.$SERVER/api/1/table/todo/update"
+    AB_CMDS[UPDATE_ALL]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p delete_completed_hasura -T 'application/json' -C $SESSION_COOKIE https://data.$SERVER/api/1/table/todo/delete"
+    ;;
+esac
 
 for test in "${!AB_CMDS[@]}"
 do
+  echo "${AB_CMDS[$test]}"
   RESULT=`eval ${AB_CMDS[$test]}`
   echo
   echo "---------------------------------------------------"
