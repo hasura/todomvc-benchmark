@@ -24,7 +24,7 @@ server {
       proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header    X-Forwarded-Proto $scheme;
 
-      proxy_pass          http://localhost:8080;
+      proxy_pass          http://localhost:8000;
       proxy_read_timeout  90;
     }
   }
@@ -64,10 +64,10 @@ server {
       proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header        X-Forwarded-Proto $scheme;
 
-      proxy_pass          http://localhost:8080;
+      proxy_pass          http://localhost:8000;
       proxy_read_timeout  90;
 
-      proxy_redirect      http://localhost:8080 https://django.benchmark.hasura.io;
+      proxy_redirect      http://localhost:8000 https://django.benchmark.hasura.io;
     }
   }
 ```
