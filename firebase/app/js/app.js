@@ -151,6 +151,11 @@ jQuery(function ($) {
         setUsername($('#username').val());
         window.location = '/#/all';
         $('#login_submit').val('Login');
+        result.getToken().then(
+          (token) => {
+            console.log('JWT coming up:');
+            console.log(token);
+          });
       }, function (err) {
         $('#login_submit').val('Failed. Try again?');
       });
