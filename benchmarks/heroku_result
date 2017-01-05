@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testResults version="1.2">
+<httpSample t="1924" it="0" lt="1923" ct="1534" ts="1483632584423" s="true" lb="Login" rc="200" rm="OK" tn="heroku_jmx 1-1" dt="text" by="754" sby="242" ng="1" na="1">
+  <responseData class="java.lang.String">{&quot;hasura_id&quot;:2}</responseData>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">POST</method>
+  <queryString class="java.lang.String">{&quot;username&quot;:&quot;tirumarai&quot;,&quot;password&quot;:&quot;12345678&quot;}</queryString>
+</httpSample>
+<httpSample t="234" it="0" lt="234" ct="0" ts="1483632586364" s="true" lb="Get Account Info" rc="200" rm="OK" tn="heroku_jmx 1-1" dt="text" by="778" sby="462" ng="1" na="1">
+  <responseData class="java.lang.String">{&quot;hasura_id&quot;:2,&quot;username&quot;:&quot;tirumarai&quot;}</responseData>
+  <cookies class="java.lang.String">_TodoRailsapi_session=Ulk4ZytLdWhvZ2RuWEZ0eGlWR0pJcmpNbVkzNG1iVmlacFYvVzVBR01vUWwzM3RUTUVBKzk5S2hDd2FVODJvamZkL0NsbFhUS2VSOUZvamRPUVlsU2s3eEVTeFFxaTFhNUxNd0xpQXdEVUk9LS00ZnN4Q0ZvVmNQNkkwc3hJR3dIZzVRPT0%3D--50de331ad85427f617479e89c939cf6d133d9603</cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+</httpSample>
+<httpSample t="679" it="0" lt="679" ct="432" ts="1483632586686" s="true" lb="Select" rc="200" rm="OK" tn="heroku_jmx 1-1" dt="text" by="1155" sby="470" ng="1" na="1">
+  <responseData class="java.lang.String">[{&quot;id&quot;:124411,&quot;user_id&quot;:2,&quot;title&quot;:&quot;test&quot;,&quot;completed&quot;:false,&quot;created_at&quot;:&quot;2017-01-05T15:43:38.943Z&quot;,&quot;updated_at&quot;:&quot;2017-01-05T15:43:38.943Z&quot;},{&quot;id&quot;:124408,&quot;user_id&quot;:2,&quot;title&quot;:&quot;kk&quot;,&quot;completed&quot;:false,&quot;created_at&quot;:&quot;2017-01-05T15:15:18.686Z&quot;,&quot;updated_at&quot;:&quot;2017-01-05T15:15:18.686Z&quot;},{&quot;id&quot;:124407,&quot;user_id&quot;:2,&quot;title&quot;:&quot;yo&quot;,&quot;completed&quot;:false,&quot;created_at&quot;:&quot;2017-01-05T14:57:40.227Z&quot;,&quot;updated_at&quot;:&quot;2017-01-05T14:57:40.227Z&quot;}]</responseData>
+  <cookies class="java.lang.String">_TodoRailsapi_session=TnhPY3U2VmptOGNzSEJIU3hWN0tYVDhpVHpDNy81NmkwNXdNSFpyTlh6VWk5dUdMcXVXaExoZml5akZobjhvd3FWVEswVVZId2F0b2g3V1QzYy9pdXozN0lxYlNmVWgvdVk2ZFlXc1J0NjA9LS1oOEE3UmR3TElLQllMNUtPQW1sdjdBPT0%3D--e61420fe6d7ed0f5d704acf4fee6ddce99ca2c80</cookies>
+  <method class="java.lang.String">POST</method>
+  <queryString class="java.lang.String"></queryString>
+</httpSample>
+<httpSample t="267" it="0" lt="267" ct="0" ts="1483632587370" s="true" lb="Insert" rc="200" rm="OK" tn="heroku_jmx 1-1" dt="text" by="878" sby="517" ng="1" na="1">
+  <responseData class="java.lang.String">{&quot;id&quot;:124412,&quot;user_id&quot;:2,&quot;title&quot;:&quot;test&quot;,&quot;completed&quot;:false,&quot;created_at&quot;:&quot;2017-01-05T16:09:47.517Z&quot;,&quot;updated_at&quot;:&quot;2017-01-05T16:09:47.517Z&quot;}</responseData>
+  <cookies class="java.lang.String">_TodoRailsapi_session=SGVLeS9YT3VrY0ZzWFpvajcwbmd3TUpXcDVTYWxLMHEydm1EcFZxMjl2bDdrYWtkM0ZYREhxa1diZm1yTy9VQ0puZS9FK25mVUZETnBFcU1yaVdNT1hlZHlOSVV3eUdMUUN5VkY0bzJ0Wmc9LS1ITWExL1B0QUVvcjFyYmt1RzhLTFZnPT0%3D--49db04b7dd2fc0b447d930488a40249d21e9a64c</cookies>
+  <method class="java.lang.String">POST</method>
+  <queryString class="java.lang.String">{&quot;title&quot;:&quot;test&quot;,&quot;completed&quot;:false,&quot;user_id&quot;:2}</queryString>
+</httpSample>
+<httpSample t="277" it="0" lt="277" ct="0" ts="1483632587639" s="true" lb="Update" rc="200" rm="OK" tn="heroku_jmx 1-1" dt="text" by="877" sby="501" ng="1" na="1">
+  <responseData class="java.lang.String">{&quot;user_id&quot;:2,&quot;id&quot;:124411,&quot;completed&quot;:true,&quot;title&quot;:&quot;test&quot;,&quot;created_at&quot;:&quot;2017-01-05T15:43:38.943Z&quot;,&quot;updated_at&quot;:&quot;2017-01-05T16:09:47.786Z&quot;}</responseData>
+  <cookies class="java.lang.String">_TodoRailsapi_session=TmJRL3hhbE96MnBHMFN5alIwRXNOYzRjZ3lWOGdOTmRQMU9TemRKRzVzWnhBZUhCL3p6UUdyMmp3cGJZZTlkR1orb2xGbzhEdE9OeVRObjJkeDhuQnY5eGRMK0hHZjcxR0lsMHRKSnRiems9LS1kOStrb3Q3TFk5aXRwckFnSFArR0RnPT0%3D--a61ddea0aaf6ca2bde48f6c117c7968d48bebc74</cookies>
+  <method class="java.lang.String">POST</method>
+  <queryString class="java.lang.String">{&quot;completed&quot;:true,&quot;id&quot;:124411}</queryString>
+</httpSample>
+<httpSample t="278" it="0" lt="278" ct="0" ts="1483632587918" s="true" lb="Delete All" rc="200" rm="OK" tn="heroku_jmx 1-1" dt="text" by="783" sby="480" ng="1" na="1">
+  <responseData class="java.lang.String">{&quot;message&quot;:&quot;Destroyed all completed todos&quot;}</responseData>
+  <cookies class="java.lang.String">_TodoRailsapi_session=L08yQWVnd29WZi9LdHc3cVVkY0syT1U5K0Q1Nm90em5OZHhFV1JacFlndEdxNUNiZ0ZRQ0Nyb0ZqU1RxanNaVzJMb0ptQlQ4TmlJd1V6b0Z2b0x6TkVJOFRTNndneUFmTEg3QlhOQi9ZVVk9LS1VOEJ0YlhQMlFva0tKajhrQnFOM0hnPT0%3D--2e3613bef1a158a9eb8b4dbb15e9b316885d71bf</cookies>
+  <method class="java.lang.String">POST</method>
+  <queryString class="java.lang.String"></queryString>
+</httpSample>
+
+</testResults>
