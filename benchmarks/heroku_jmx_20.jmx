@@ -17,7 +17,7 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">3</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1000</stringProp>
+        <stringProp name="ThreadGroup.num_threads">20</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1483607594000</longProp>
         <longProp name="ThreadGroup.end_time">1483607594000</longProp>
@@ -36,13 +36,23 @@
         </HeaderManager>
         <hashTree/>
         <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
-          <collectionProp name="CookieManager.cookies"/>
+          <collectionProp name="CookieManager.cookies">
+            <elementProp name="_TodoRailsapi_session" elementType="Cookie" testname="_TodoRailsapi_session">
+              <stringProp name="Cookie.value">OVNkMjA1VG1sTGQ4UUhRN214UFZuUEpST1hRS0xUMWpXVEtoTmlnb1M1cnBFdVlJK0ZIVUxPRmcwK2U1NHR2blNxLzdoRlJLS3hPNHBSUzAyRDduakQ5dXJTZTl6KzZvdFFJZnd5RVg4dDg9LS0zOGxKeDd1OEhzRlU2Q051TWJlZ3pBPT0%3D--ff4b4259627dd869c549f268828cff206f1df306</stringProp>
+              <stringProp name="Cookie.domain">peaceful-spire-96451.herokuapp.com</stringProp>
+              <stringProp name="Cookie.path">/</stringProp>
+              <boolProp name="Cookie.secure">false</boolProp>
+              <longProp name="Cookie.expires">0</longProp>
+              <boolProp name="Cookie.path_specified">true</boolProp>
+              <boolProp name="Cookie.domain_specified">true</boolProp>
+            </elementProp>
+          </collectionProp>
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
           <stringProp name="CookieManager.policy">standard</stringProp>
           <stringProp name="CookieManager.implementation">org.apache.jmeter.protocol.http.control.HC4CookieHandler</stringProp>
         </CookieManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login" enabled="false">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -71,7 +81,7 @@
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Account Info" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Account Info" enabled="false">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -153,7 +163,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&quot;title&quot;:&quot;test&quot;,&quot;completed&quot;:false,&quot;user_id&quot;:${userId}}</stringProp>
+                <stringProp name="Argument.value">{&quot;title&quot;:&quot;test&quot;,&quot;completed&quot;:false,&quot;user_id&quot;:2}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
