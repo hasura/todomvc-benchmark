@@ -30,8 +30,8 @@ echo "Project: $TEST"
 declare -A TEST_SERVERS
 TEST_SERVERS=(
   [rails_bm]="104.198.99.32"
-  [rails_heroku]="https://peaceful-spire-96451.herokuapp.com/"
-  [django]="104.198.99.32"
+  [rails_heroku]="https://peaceful-spire-96451.herokuapp.com"
+  [django]="104.198.99.32:8000"
   [hasura]="warble80.hasura-app.io"
   [firebase]="https://todomvc-benchmark.firebaseio.com"
 )
@@ -63,7 +63,7 @@ case $TEST in
     ;;
   django)
     AB_CMDS[GET_ACCOUNT_INFO]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -C $SESSION_COOKIE $SERVER/auth/user/"
-    AB_CMDS[SELECT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -C $SESSION_COOKIE $SERVER/api/tasks"
+    AB_CMDS[SELECT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -C $SESSION_COOKIE $SERVER/api/tasks/"
     AB_CMDS[INSERT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p insert_data_django -T 'application/json' -C $SESSION_COOKIE $SERVER/api/tasks/"
     AB_CMDS[UPDATE]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p update_data_django -m 'PATCH' -T 'application/json' -C $SESSION_COOKIE $SERVER/api/tasks/"
     AB_CMDS[UPDATE_ALL]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p update_data_django -T 'application/json' -C $SESSION_COOKIE $SERVER/api/tasks/delete-completed"
