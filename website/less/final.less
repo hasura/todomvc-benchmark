@@ -15,15 +15,39 @@
 
   th, td {
     padding: 20px;
+    span.glyphicon {
+      font-size: 13px;
+      font-weight: bold;
+    }
+    a span.glyphicon {
+      font-size: 10px;
+    }
     span.best {
       color: #90a91a;
-      font-size: 20px;
-      top: 4px;
     }
     span.worst {
       color: #f16e43;
-      font-size: 20px;
-      top: 4px;
+    }
+    a {
+      font-family: monospace;
+      font-size: 13px;
+    }
+  }
+  td[data-toggle="modal"] {
+    cursor: pointer;
+    -webkit-box-shadow: 0px 4px 8px 0px rgba(204,204,204,1);
+    -moz-box-shadow: 0px 4px 8px 0px rgba(204,204,204,1);
+    box-shadow: 0px 4px 8px 0px rgba(204,204,204,1);
+  }
+  th {
+    color: #698592;
+  }
+  .section-header {
+    text-align: center;
+    color: #c18787;
+    font-style: italic;
+    @media (max-width: @screen-sm-max) {
+      text-align: left;
     }
   }
 }
