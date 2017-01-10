@@ -1,5 +1,5 @@
 # todomvc-benchmark
-Different backend comparisons with Hasura with TodoMVC project (http://todomvc.com/)
+Different backend comparisons with Hasura on TodoMVC project (http://todomvc.com/)
 
 *Refer to particular backend folder for app setup.*
 
