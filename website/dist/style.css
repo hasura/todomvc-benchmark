@@ -6422,3 +6422,6 @@ button.close {
     text-align: left;
   }
 }
+.modal {
+  font-size: 1.1em;
+}
