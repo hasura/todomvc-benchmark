@@ -33,6 +33,7 @@ TEST_SERVERS=(
   [rails_heroku]="https://peaceful-spire-96451.herokuapp.com"
   [django]="104.198.99.32:8000"
   [hasura]="warble80.hasura-app.io"
+  [firebase]="https://todomvc-benchmark.firebaseio.com"
 )
 
 SERVER="${TEST_SERVERS[$TEST]}"
@@ -47,6 +48,8 @@ echo "Test: $TEST"
 echo "Server: $SERVER"
 echo "Concurrency: $CONCURRENCY"
 echo "Num of Requests: $NUMREQUESTS"
+
+firebase_todo_id="-K_dp6w-pKtArDrSy2Bl"
 
 declare -A AB_CMDS
 
@@ -71,6 +74,13 @@ case $TEST in
     AB_CMDS[INSERT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p insert_data_hasura -T 'application/json' -C $SESSION_COOKIE https://data.$SERVER/api/1/table/todo/insert"
     AB_CMDS[UPDATE]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p update_data_hasura -T 'application/json' -C $SESSION_COOKIE https://data.$SERVER/api/1/table/todo/update"
     AB_CMDS[UPDATE_ALL]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p delete_completed_hasura -T 'application/json' -C $SESSION_COOKIE https://data.$SERVER/api/1/table/todo/delete"
+    ;;
+  firebase)
+    AB_CMDS[GET_ACCOUNT_INFO]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS $SERVER/todos.json?auth=$SESSION_COOKIE"
+    AB_CMDS[SELECT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS $SERVER/todos.json?auth=$SESSION_COOKIE"
+    AB_CMDS[INSERT]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p insert_data_firebase -T 'application/json' $SERVER/todos.json?auth=$SESSION_COOKIE"
+    AB_CMDS[UPDATE]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -p update_data_firebase -m 'PATCH' -T 'application/json' $SERVER/todos/$firebase_todo_id.json?auth=$SESSION_COOKIE"
+    AB_CMDS[UPDATE_ALL]="ab -k -q -c $CONCURRENCY -n $NUMREQUESTS -m 'DELETE' $SERVER/todos/$firebase_todo_id.json?auth=$SESSION_COOKIE"
     ;;
 esac
 

@@ -1,0 +1,58 @@
+@import "bootstrap.less";
+
+#main {
+  min-height: 100vh;
+  padding: 20px;
+
+  background: rgba(255,255,255,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(255,250,242,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(255,250,242,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(255,250,242,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(255,250,242,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(255,250,242,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,250,242,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fffaf2', GradientType=1 );
+
+  th, td {
+    padding: 20px;
+    span.glyphicon {
+      font-size: 13px;
+      font-weight: bold;
+    }
+    a span.glyphicon {
+      font-size: 10px;
+    }
+    span.best {
+      color: #90a91a;
+    }
+    span.worst {
+      color: #f16e43;
+    }
+    a {
+      font-family: monospace;
+      font-size: 13px;
+    }
+  }
+  td[data-toggle="modal"] {
+    cursor: pointer;
+    -webkit-box-shadow: 0px 4px 8px 0px rgba(204,204,204,1);
+    -moz-box-shadow: 0px 4px 8px 0px rgba(204,204,204,1);
+    box-shadow: 0px 4px 8px 0px rgba(204,204,204,1);
+  }
+  th {
+    color: #698592;
+  }
+  .section-header {
+    text-align: center;
+    color: #c18787;
+    font-style: italic;
+    @media (max-width: @screen-sm-max) {
+      text-align: left;
+    }
+  }
+}
+
+.modal {
+  ////font-size: 1.1em;
+  //font-weight: 500;
+}

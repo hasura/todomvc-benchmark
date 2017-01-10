@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Benchmark | Hasura</title>
+
+    <!-- Bootstrap -->
+    <link href="dist/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="main">
+      <h1 class="text-center">Hasura vs. Others</h1>
+      <br/><br/>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-md-offset-3">
+            <img src='/images/todo.png' class='img-responsive'/>
+          </div>
+          <div class="col-md-4">
+            <br/>
+            We build a todo app to compare the 'backend' that we've built in different ways.
+            <br/><br/>
+            The backend powers the following features:
+            <ul>
+              <li> A user can view, add, update and delete their todos.</li>
+              <li> New user registration, login &amp; logout.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <br/><br/>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th> </th>
+              <th> RAILS </th>
+              <th> RAILS + HEROKU </th>
+              <th> HASURA </th>
+              <th> FIREBASE </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th> $40 budget </th>
+              <td> 4GB, 2x CPU (DigitalOcean) </td>
+              <td> 1x Dyno + Postgres 10M row plan </td>
+              <td data-toggle="modal" data-target="#infraModal"> 4GB, 2x CPU (DigitalOcean) </td>
+              <td> Blaze plan </td>
+            </tr>
+
+            <tr>
+              <th colspan="5" class="section-header">PERFORMANCE</th>
+            <tr>
+            <tr>
+              <th> Throughput </th>
+              <td> ~60 req/s </td>
+              <td> ~60 req/s </td>
+              <td data-toggle="modal" data-target="#perfModal"> <span class="best glyphicon glyphicon-thumbs-up"></span> ~250 req/s </td>
+              <td> ~80 req/s </td>
+            </tr>
+
+            <tr>
+              <th colspan="5" class="section-header">DEVELOPMENT EFFORT</th>
+            <tr>
+              <th> Lines of code </th>
+              <td> 200 </td>
+              <td> 200 </td>
+              <td data-toggle="modal" data-target="#baasModal"> <span class="best glyphicon glyphicon-thumbs-up"></span> 30 </td>
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> 20 </td>
+            </tr>
+            <tr>
+              <th> Database setup </th>
+              <td>
+                Postgres config
+                <a href="https://github.com/hasura/todomvc-benchmark/blob/master/todo-railsapi/database-config.md"><span class="glyphicon glyphicon-link"></span></a>
+              </td>
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Postgres no config </td>
+              <td data-toggle="modal" data-target="#dbModal"> <span class="best glyphicon glyphicon-thumbs-up"></span> Postgres no config </td>
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> N/A </td>
+            </tr>
+            <tr>
+              <th> Deployment </th>
+              <td>
+                git, ssh, ruby, puma
+                <a href="https://github.com/hasura/todomvc-benchmark/blob/master/todo-railsapi/appserver-config.md"><span class="glyphicon glyphicon-link"></span></a>
+              </td>
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> git </td>
+              <td data-toggle="modal" data-target="#depModal"> <span class="best glyphicon glyphicon-thumbs-up"></span> git</td>
+              <td> firebase-cli (for static content only)</td>
+            </tr>
+            <tr>
+              <th> Webserver/SSL </th>
+              <td>
+                nginx, manual SSL certs
+                <a href="https://github.com/hasura/todomvc-benchmark/blob/master/todo-railsapi/webserver-config.md"><span class="glyphicon glyphicon-link"></span></a>
+              </td>
+              <td> Auto, manual SSL certs </td>
+              <td data-toggle="modal" data-target="#sslModal"> <span class="best glyphicon glyphicon-thumbs-up"></span> Auto </td>
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Auto </td>
+            </tr>
+
+            <tr>
+              <th colspan="5" class="section-header">FLEXIBILITY</th>
+            <tr>
+            <tr>
+              <th> Database ownership </th>
+              <td> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td data-toggle="modal" data-target="#dbOwnerModal"> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td> <span class="glyphicon glyphicon-remove worst"></span> </td>
+            </tr>
+            <tr>
+              <th> Deploy custom code </th>
+              <td> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td data-toggle="modal" data-target="#ccModal"> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td> <span class="glyphicon glyphicon-remove worst"></span> (only static files) </td>
+            </tr>
+            <tr>
+              <th> Infrastructure ownership </th>
+              <td> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td> <span class="glyphicon glyphicon-remove worst"></span> </td>
+              <td data-toggle="modal" data-target="#infraOwnModal"> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td> <span class="glyphicon glyphicon-remove worst"></span> </td>
+            </tr>
+
+            <tr>
+              <th colspan="5" class="section-header">SOURCE</th>
+            <tr>
+            <tr>
+              <th> Source </th>
+              <td>
+                <a target="blank" href="https://github.com/hasura/todomvc-benchmark/tree/master/todo-railsapi">
+                  source/rails
+                </a>
+              </td>
+              <td>
+                <a target="blank" href="https://github.com/hasura/todomvc-benchmark/tree/master/todo-heroku">
+                  source/rails-heroku
+                </a>
+              </td>
+              <td>
+                <a target="blank" href="https://github.com/hasura/todomvc-benchmark/tree/master/todo-hasura">
+                  source/hasura
+                </a>
+              </td>
+              <!--td> <a href="">source/firebase</a> </td-->
+              <td> N/A </td>
+            </tr>
+            <!--tr>
+              <th> Demo </th>
+              <td> <a href="">demo/rails</a> </td>
+              <td> <a href="">demo/rails-heroku</a> </td>
+              <td> <a href="">demo/hasura</a> </td>
+              <td> <a href="">demo/firebase</a> </td>
+            </tr-->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- modals -->
+    <div class="modal fade" id="infraModal" tabindex="-1" role="dialog" aria-labelledby="infraModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="infraModalLabel">Hasura on your infrastructure</h4>
+          </div>
+          <div class="modal-body">
+            Hasura platform can be installed on your own infrastructure.<br/>
+            <img src="/images/infra.png" class="img-responsive" />
+            <br/>
+            For this comparison, we've installed Hasura on a DigitalOcean droplet.
+          </div>
+        </div>
+      </div>
+    </div> <!-- infraModal -->
+
+    <!-- PerfModal -->
+    <div class="modal fade" id="perfModal" tabindex="-1" role="dialog" aria-labelledby="perfModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="perfModalLabel">Hasura data API</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              For this exercise, Hasura Data API was used as the backend.
+            </p>
+            <p>
+              Hasura Data API performs so well because: <br/>
+              <ul>
+                <li>
+                  The Data API is written in Haskell and is optimized to exploit
+                  mutli-core CPUs to achieve high concurrency.
+                </li>
+                <li>
+                  The Data API is also optimized to use PostgreSQL features which
+                  help in the performance. For example, it uses prepared
+                  statements and JSON aggregation queries of PostgreSQL.
+                </li>
+                <li>
+                  The Data API does fast JSON serialization/deserialization.
+                </li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="baasModal" tabindex="-1" role="dialog" aria-labelledby="baasModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="baasModalLabel">Hasura BaaS components</h4>
+          </div>
+          <div class="modal-body">
+            <h5> Hasura provides built-in Data + Auth APIs. </h5>
+            <p>
+              For this exercise, we used the Data and Auth APIs directly as
+              our backend. We had to write ~30 lines of code for the database
+              schema and permissions.
+            </p>
+            <hr/>
+            Hasura BaaS components speed up your development time tremendously: <br/>
+            <ul>
+              <li>
+                As soon as your create your database schema, you get a HTTP
+                query API readily available on your data, with permissions and
+                access control.
+              </li>
+              <li>
+                Readymade Auth APIs for authentication and user management. You
+                can use these and focus your efforts in bulding core parts of
+                your app.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="dbModal" tabindex="-1" role="dialog" aria-labelledby="dbModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="dbModalLabel">Hasura PostgreSQL</h4>
+          </div>
+          <div class="modal-body">
+            Hasura already installs and configures a PostgreSQL instance for
+            you. On which the Hasura Data service runs. <br/>
+            <br/>
+            You have access to this PostgreSQL instance directly as well.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="depModal" tabindex="-1" role="dialog" aria-labelledby="depModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="depModalLabel">Hasura deployment tools</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              Hasura has 2 easy ways to deploy custom code - in this case our UI
+              service.<br/>
+              In this example, we used to git push to deploy our code by simply
+              running:<br/>
+              <code> $ git push hasura master </code>
+            </p>
+            <hr/>
+            Hasura can deploy code via:<br/>
+            <ul>
+              <li> Docker images </li>
+              <li> Git push your code </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="sslModal" tabindex="-1" role="dialog" aria-labelledby="sslModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="sslModalLabel">Hasura API gateway</h4>
+          </div>
+          <div class="modal-body">
+            Hasura is bundled with an API gateway, which is an Nginx instance
+            setup as a reverse proxy and is configured with SSL.
+            <br/> <br/>
+            Hasura also creates free Grade A SSL certificates using Let's
+            Encrypt.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="dbOwnerModal" tabindex="-1" role="dialog" aria-labelledby="dbOwnerModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="dbOwnerModalLabel">Accessing your database</h4>
+          </div>
+          <div class="modal-body">
+            Hasura tooling can be installed on your own infrastructure.<br/>
+            <img src="/images/infra.png" class="img-responsive" />
+            <br/>
+            For this comparison, we've installed Hasura on a DigitalOcean droplet.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="ccModal" tabindex="-1" role="dialog" aria-labelledby="ccModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="ccModalLabel">Writing custom server-side code</h4>
+          </div>
+          <div class="modal-body">
+            Hasura tooling can be installed on your own infrastructure.<br/>
+            <img src="/images/infra.png" class="img-responsive" />
+            <br/>
+            For this comparison, we've installed Hasura on a DigitalOcean droplet.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="infraOwnModal" tabindex="-1" role="dialog" aria-labelledby="infraOwnModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="infraOwnModalLabel">Owning your infrastructure</h4>
+          </div>
+          <div class="modal-body">
+            Hasura tooling can be installed on your own infrastructure.<br/>
+            <img src="/images/infra.png" class="img-responsive" />
+            <br/>
+            For this comparison, we've installed Hasura on a DigitalOcean droplet.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
