@@ -1,4 +1,5 @@
 # Postgres Configuration to deploy a Rails app
+For this guide, we are assuming that we are using a Ubuntu 16.10 server.
 
 * Install Postgres.
 
