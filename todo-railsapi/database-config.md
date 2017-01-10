@@ -1,4 +1,4 @@
-# Postgres Configuration to deploy a Django app
+# Postgres Configuration to deploy a Rails app
 
 * Install Postgres.
 
