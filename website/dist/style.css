@@ -6368,14 +6368,7 @@ button.close {
 #main {
   min-height: 100vh;
   padding: 20px;
-  background: #ffffff;
-  background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ffffff), color-stop(100%, #fffaf2));
-  background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
-  background: -o-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
-  background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
-  background: radial-gradient(ellipse at center, #ffffff 0%, #fffaf2 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#fffaf2', GradientType=1);
+  background-color: #ffffff;
 }
 #main th,
 #main td {
@@ -6416,6 +6409,12 @@ button.close {
   text-align: center;
   color: #c18787;
   font-style: italic;
+}
+#main .section-header-2 {
+  text-align: center;
+  color: #c18787;
+  font-style: italic;
+  font-size: 16px;
 }
 @media (max-width: 991px) {
   #main .section-header {

@@ -28,12 +28,12 @@
           </div>
           <div class="col-md-4">
             <br/>
-            We build a todo app to compare the 'backend' that we've built in different ways.
+            We built the same To-Do application using 4 different platforms/frameworks to compare various aspects of their backends.
             <br/><br/>
-            The backend powers the following features:
+            The backend for each app powers the following features:
             <ul>
               <li> A user can view, add, update and delete their todos.</li>
-              <li> New user registration, login &amp; logout.</li>
+              <li> New user registration, login, and logout.</li>
             </ul>
           </div>
         </div>
@@ -52,15 +52,14 @@
           </thead>
           <tbody>
             <tr>
-              <th> $40 budget </th>
+              <th> Infrastructure ($40 budget) </th>
               <td> 4GB, 2x CPU (DigitalOcean) </td>
               <td> Standard 1x Dyno + Postgres 10M row plan </td>
               <td data-toggle="modal" data-target="#infraModal"> 4GB, 2x CPU (DigitalOcean) </td>
               <td> Blaze plan </td>
             </tr>
-
             <tr>
-              <th colspan="5" class="section-header">PERFORMANCE</th>
+              <th colspan="5" class="section-header-2">PERFORMANCE</th>
             <tr>
             <tr>
               <th> Throughput </th>
@@ -69,10 +68,9 @@
               <td data-toggle="modal" data-target="#perfModal"> <span class="best glyphicon glyphicon-thumbs-up"></span> ~250 req/s </td>
               <td> ~80 req/s </td>
             </tr>
-
             <tr>
               <th colspan="5" class="section-header">DEVELOPMENT EFFORT</th>
-            <tr>
+              <tr>
               <th> Lines of code </th>
               <td> 200 </td>
               <td> 200 </td>
@@ -92,7 +90,7 @@
             <tr>
               <th> Deployment </th>
               <td>
-                git, ssh, ruby, puma
+                git + ssh + ruby + puma
                 <a target="blank" href="https://github.com/hasura/todomvc-benchmark/blob/master/todo-railsapi/appserver-config.md"><span class="glyphicon glyphicon-link"></span></a>
               </td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> git </td>
@@ -134,7 +132,6 @@
               <td data-toggle="modal" data-target="#infraOwnModal"> <span class="glyphicon glyphicon-ok best"></span> </td>
               <td> <span class="glyphicon glyphicon-remove worst"></span> </td>
             </tr>
-
             <tr>
               <th colspan="5" class="section-header">SOURCE</th>
             <tr>
@@ -176,13 +173,15 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="infraModalLabel">Hasura on your infrastructure</h4>
+            <h4 class="modal-title" id="infraModalLabel">Infrastructure baseline</h4>
           </div>
           <div class="modal-body">
-            Hasura platform can be installed on your own infrastructure.<br/>
+            To baseline infrastructure across these different platforms/frameworks, the apps have been deployed either on VMs with exactly the same specs (4GB RAM, 2xCPU - DigitalOcean costing $40) or using equally priced plans on Firebase or Heroku.<br/>
+          </div>
+          <div class="modal-body">
+            <h5> Hasura works with any infrastructure!</h5>
+            The Hasura platform is infrastructure agnostic and is installed on your own infrastructure (<i>including your local machine</i>). Hasura projects can be seamlessly migrated across providers.<br/>
             <img src="/images/infra.png" class="img-responsive" />
-            <br/>
-            For this comparison, we've installed Hasura on a DigitalOcean droplet.
           </div>
         </div>
       </div>
@@ -194,9 +193,21 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="perfModalLabel">Hasura data API</h4>
+            <h4 class="modal-title" id="perfModalLabel">Benchmarking throughput</h4>
           </div>
           <div class="modal-body">
+            <p> To benchmark the different apps, <br>
+              <ul>
+                <li> Multiple parallel threads were launched using jmeter in 1 second.
+                </li>
+                <li> Each thread was made to perform authenticated CRUD operations sequentially.
+                </li>
+                <li>This exercise was repeated 3 times and the average of these results has been considered. 
+                </li>
+              </ul>
+              Different number of threads were spawned to simulate low (10 threads), standard (200 threads) and heavy (1000 threads) load conditions.
+            </p>
+            <h4>Hasura Data API</h4>
             <p>
               For this exercise, Hasura Data API was used as the backend.
             </p>
@@ -230,24 +241,26 @@
             <h4 class="modal-title" id="baasModalLabel">Hasura BaaS components</h4>
           </div>
           <div class="modal-body">
+            <p>
+              For details on loc for other platforms/frameworks, please refer to their respective source code (<i>linked at the bottom of the page</i>)
+            </p><br>
+
             <h5> Hasura provides built-in Data + Auth APIs. </h5>
             <p>
-              For this exercise, we used the Data and Auth APIs directly as
-              our backend. We had to write ~30 lines of code for the database
+              For this exercise, the Data and Auth APIs were used directly as
+              the backend. ~30 lines of code were written for the database
               schema and permissions.
             </p>
             <hr/>
             Hasura BaaS components speed up your development time tremendously: <br/>
             <ul>
               <li>
-                As soon as your create your database schema, you get a HTTP
+                As soon as your create your database schema, you get a JSON based HTTP
                 query API readily available on your data, with permissions and
                 access control.
               </li>
               <li>
-                Readymade Auth APIs for authentication and user management. You
-                can use these and focus your efforts in bulding core parts of
-                your app.
+                Readymade Auth APIs for authentication and user management.
               </li>
             </ul>
           </div>
@@ -263,10 +276,8 @@
             <h4 class="modal-title" id="dbModalLabel">Hasura PostgreSQL</h4>
           </div>
           <div class="modal-body">
-            Hasura already installs and configures a PostgreSQL instance for
-            you. On which the Hasura Data service runs. <br/>
-            <br/>
-            You have access to this PostgreSQL instance directly as well.
+            Hasura comes pre-installed with a PostgreSQL instance for
+            you.<br/>
           </div>
         </div>
       </div>
@@ -280,19 +291,16 @@
             <h4 class="modal-title" id="depModalLabel">Hasura deployment tools</h4>
           </div>
           <div class="modal-body">
-            <p>
-              Hasura has 2 easy ways to deploy custom code - in this case our UI
-              service.<br/>
-              In this example, we used to git push to deploy our code by simply
-              running:<br/>
-              <code> $ git push hasura master </code>
-            </p>
-            <hr/>
             Hasura can deploy code via:<br/>
             <ul>
               <li> Docker images </li>
               <li> Git push your code </li>
             </ul>
+            <p>
+              In this example, we used to git push to deploy our code (<i>our UI service</i>) by simply
+              running:<br/><br/>
+              <code> $ git push hasura master </code>
+            </p>
           </div>
         </div>
       </div>
@@ -309,7 +317,7 @@
             Hasura is bundled with an API gateway, which is an Nginx instance
             setup as a reverse proxy and is configured with SSL.
             <br/> <br/>
-            Hasura also creates free Grade A SSL certificates using Let's
+            Hasura also automatically creates free Grade A SSL certificates using Let's
             Encrypt.
           </div>
         </div>
@@ -324,10 +332,7 @@
             <h4 class="modal-title" id="dbOwnerModalLabel">Accessing your database</h4>
           </div>
           <div class="modal-body">
-            Hasura tooling can be installed on your own infrastructure.<br/>
-            <img src="/images/infra.png" class="img-responsive" />
-            <br/>
-            For this comparison, we've installed Hasura on a DigitalOcean droplet.
+            Hasura provides unrestricted access to its pre-installed PostgreSQL instance.<br/>
           </div>
         </div>
       </div>
@@ -341,10 +346,7 @@
             <h4 class="modal-title" id="ccModalLabel">Writing custom server-side code</h4>
           </div>
           <div class="modal-body">
-            Hasura tooling can be installed on your own infrastructure.<br/>
-            <img src="/images/infra.png" class="img-responsive" />
-            <br/>
-            For this comparison, we've installed Hasura on a DigitalOcean droplet.
+            Hasura is a Microservices platform that allows you to deploy your custom code using Docker.
           </div>
         </div>
       </div>
@@ -358,10 +360,9 @@
             <h4 class="modal-title" id="infraOwnModalLabel">Owning your infrastructure</h4>
           </div>
           <div class="modal-body">
-            Hasura tooling can be installed on your own infrastructure.<br/>
+            Hasura tooling is installed on your own infrastructure.<br/>
             <img src="/images/infra.png" class="img-responsive" />
             <br/>
-            For this comparison, we've installed Hasura on a DigitalOcean droplet.
           </div>
         </div>
       </div>
