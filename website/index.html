@@ -23,13 +23,19 @@
       <br/><br/>
       <div class="container">
         <div class="row">
-          <div class="col-md-3 col-md-offset-3">
+          <div class="col-md-4">
             <img src='/images/todo.png' class='img-responsive'/>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-8">
             <br/>
-            We built the same To-Do application using 4 different platforms/frameworks to compare various aspects of their backends.
-            <br/><br/>
+            We benchmarked a To-Do application backend built or deployed using 4 different platforms/frameworks i.e.<br/>
+            <ul>
+              <li> Rails app deployed on DigitalOcean </li>
+              <li> Rails app deployed using Heroku </li>
+              <li> App built and deployed using Hasura on DigitalOcean</li>
+              <li> App built using Firebase</li>
+            </ul>
+            <br/>
             The backend for each app powers the following features:
             <ul>
               <li> A user can view, add, update and delete their todos.</li>
@@ -55,28 +61,11 @@
               <th> Infrastructure ($40 budget) </th>
               <td> 4GB, 2x CPU (DigitalOcean) </td>
               <td> Standard 1x Dyno + Postgres 10M row plan </td>
-              <td data-toggle="modal" data-target="#infraModal"> 4GB, 2x CPU (DigitalOcean) </td>
+              <td data-toggle="modal" data-target="#infraModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'infrastructure');"> 4GB, 2x CPU (DigitalOcean) </td>
               <td> Blaze plan </td>
             </tr>
             <tr>
-              <th colspan="5" class="section-header-2">PERFORMANCE</th>
-            <tr>
-            <tr>
-              <th> Throughput </th>
-              <td> ~60 req/s </td>
-              <td> ~60 req/s </td>
-              <td data-toggle="modal" data-target="#perfModal"> <span class="best glyphicon glyphicon-thumbs-up"></span> ~250 req/s </td>
-              <td> ~80 req/s </td>
-            </tr>
-            <tr>
               <th colspan="5" class="section-header">DEVELOPMENT EFFORT</th>
-              <tr>
-              <th> Lines of code </th>
-              <td> 200 </td>
-              <td> 200 </td>
-              <td data-toggle="modal" data-target="#baasModal"> <span class="best glyphicon glyphicon-thumbs-up"></span> 30 </td>
-              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> 20 </td>
-            </tr>
             <tr>
               <th> Database setup </th>
               <td>
@@ -84,9 +73,17 @@
                 <a target="blank" href="https://github.com/hasura/todomvc-benchmark/blob/master/todo-railsapi/database-config.md"><span class="glyphicon glyphicon-link"></span></a>
               </td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Postgres no config </td>
-              <td data-toggle="modal" data-target="#dbModal"> <span class="best glyphicon glyphicon-thumbs-up"></span> Postgres no config </td>
+              <td data-toggle="modal" data-target="#dbModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'postgres');"> <span class="best glyphicon glyphicon-thumbs-up"></span> Postgres no config </td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> N/A </td>
             </tr>
+            <tr>
+              <th> Lines of code </th>
+              <td> 200 </td>
+              <td> 200 </td>
+              <td data-toggle="modal" data-target="#baasModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'baas');"> <span class="best glyphicon glyphicon-thumbs-up"></span> 30 </td>
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> 20 </td>
+            </tr>
+            
             <tr>
               <th> Deployment </th>
               <td>
@@ -94,7 +91,7 @@
                 <a target="blank" href="https://github.com/hasura/todomvc-benchmark/blob/master/todo-railsapi/appserver-config.md"><span class="glyphicon glyphicon-link"></span></a>
               </td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> git </td>
-              <td data-toggle="modal" data-target="#depModal"> <span class="best glyphicon glyphicon-thumbs-up"></span> git</td>
+              <td data-toggle="modal" data-target="#depModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'deployment');"> <span class="best glyphicon glyphicon-thumbs-up"></span> git</td>
               <td> firebase-cli (for static content only)</td>
             </tr>
             <tr>
@@ -104,10 +101,19 @@
                 <a target="blank" href="https://github.com/hasura/todomvc-benchmark/blob/master/todo-railsapi/webserver-config.md"><span class="glyphicon glyphicon-link"></span></a>
               </td>
               <td> Auto, manual SSL certs </td>
-              <td data-toggle="modal" data-target="#sslModal"> <span class="best glyphicon glyphicon-thumbs-up"></span> Auto </td>
+              <td data-toggle="modal" data-target="#sslModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'gateway')"> <span class="best glyphicon glyphicon-thumbs-up"></span> Auto </td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Auto </td>
             </tr>
-
+            <tr>
+              <th colspan="5" class="section-header-2">PERFORMANCE</th>
+            <tr>
+            <tr>
+              <th> Throughput </th>
+              <td> ~60 req/s </td>
+              <td> ~60 req/s </td>
+              <td data-toggle="modal" data-target="#perfModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'throughput');"> <span class="best glyphicon glyphicon-thumbs-up"></span> ~250 req/s </td>
+              <td> ~80 req/s </td>
+            </tr>
             <tr>
               <th colspan="5" class="section-header">FLEXIBILITY</th>
             <tr>
@@ -115,21 +121,21 @@
               <th> Database ownership </th>
               <td> <span class="glyphicon glyphicon-ok best"></span> </td>
               <td> <span class="glyphicon glyphicon-ok best"></span> </td>
-              <td data-toggle="modal" data-target="#dbOwnerModal"> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td data-toggle="modal" data-target="#dbOwnerModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'db-ownership');"> <span class="glyphicon glyphicon-ok best"></span> </td>
               <td> <span class="glyphicon glyphicon-remove worst"></span> </td>
             </tr>
             <tr>
               <th> Deploy custom code </th>
               <td> <span class="glyphicon glyphicon-ok best"></span> </td>
               <td> <span class="glyphicon glyphicon-ok best"></span> </td>
-              <td data-toggle="modal" data-target="#ccModal"> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td data-toggle="modal" data-target="#ccModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'custom-code');"> <span class="glyphicon glyphicon-ok best"></span> </td>
               <td> <span class="glyphicon glyphicon-remove worst"></span> (only static files) </td>
             </tr>
             <tr>
               <th> Infrastructure ownership </th>
               <td> <span class="glyphicon glyphicon-ok best"></span> </td>
               <td> <span class="glyphicon glyphicon-remove worst"></span> </td>
-              <td data-toggle="modal" data-target="#infraOwnModal"> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td data-toggle="modal" data-target="#infraOwnModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'infra-ownership');"> <span class="glyphicon glyphicon-ok best"></span> </td>
               <td> <span class="glyphicon glyphicon-remove worst"></span> </td>
             </tr>
             <tr>
@@ -176,7 +182,7 @@
             <h4 class="modal-title" id="infraModalLabel">Infrastructure baseline</h4>
           </div>
           <div class="modal-body">
-            To baseline infrastructure across these different platforms/frameworks, the apps have been deployed either on VMs with exactly the same specs (4GB RAM, 2xCPU - DigitalOcean costing $40) or using equally priced plans on Firebase or Heroku.<br/>
+            To baseline infrastructure across these different platforms/frameworks, the apps have been deployed either on VMs with exactly the same specs (4GB RAM, 2xCPU - DigitalOcean costing $40) or using equally priced plans on Firebase (Blaze plan) or Heroku ($25 compute + $9 database).<br/>
           </div>
           <div class="modal-body">
             <h5> Hasura works with any infrastructure!</h5>
@@ -205,7 +211,7 @@
                 <li>This exercise was repeated 3 times and the average of these results has been considered. 
                 </li>
               </ul>
-              Different number of threads were spawned to simulate low (10 threads), standard (200 threads) and heavy (1000 threads) load conditions.
+              Different number of threads were spawned to simulate low (10), standard (200) and heavy (1000) load conditions.
             </p>
             <h4>Hasura Data API</h4>
             <p>
@@ -246,6 +252,7 @@
             </p><br>
 
             <h5> Hasura provides built-in Data + Auth APIs. </h5>
+            <br/><img src="/images/baas.png" class="img-responsive" /><br/><br/>
             <p>
               For this exercise, the Data and Auth APIs were used directly as
               the backend. ~30 lines of code were written for the database
@@ -257,10 +264,12 @@
               <li>
                 As soon as your create your database schema, you get a JSON based HTTP
                 query API readily available on your data, with permissions and
-                access control.
+                access control.<br/><br/>
+                <img src="/images/data-api.png" class="img-responsive" /><br/>
               </li>
               <li>
-                Readymade Auth APIs for authentication and user management.
+                Readymade Auth APIs for authentication and user management.<br/><br/>
+                <img src="/images/auth-apis.png" class="img-responsive" />
               </li>
             </ul>
           </div>
@@ -277,7 +286,8 @@
           </div>
           <div class="modal-body">
             Hasura comes pre-installed with a PostgreSQL instance for
-            you.<br/>
+            you.<br/><br/><br/>
+            <img src="/images/postgres.png" class="img-responsive" />
           </div>
         </div>
       </div>
@@ -296,6 +306,7 @@
               <li> Docker images </li>
               <li> Git push your code </li>
             </ul>
+            <img src="/images/deployment-options.png" class="img-responsive" />
             <p>
               In this example, we used to git push to deploy our code (<i>our UI service</i>) by simply
               running:<br/><br/>
@@ -311,12 +322,15 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="sslModalLabel">Hasura API gateway</h4>
+            <h4 class="modal-title" id="sslModalLabel">Hasura API Gateway</h4>
           </div>
           <div class="modal-body">
             Hasura is bundled with an API gateway, which is an Nginx instance
             setup as a reverse proxy and is configured with SSL.
-            <br/> <br/>
+            <br/><br/>
+            <img src="/images/gateway.png" class="img-responsive" /><br/><br/>
+            This gatway also handles centralized session management, using Redis to resolve auth-tokens into user/role HTTP headers for all upstream microservices.<br/>
+            <img src="/images/session-management.png" class="img-responsive" /><br/></br/>
             Hasura also automatically creates free Grade A SSL certificates using Let's
             Encrypt.
           </div>
@@ -372,5 +386,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-59768903-1', 'auto');
+     ga('send', 'pageview');
+
+    </script>
+
   </body>
 </html>
