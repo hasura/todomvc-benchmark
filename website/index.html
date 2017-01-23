@@ -65,6 +65,16 @@
               <td> Blaze plan </td>
             </tr>
             <tr>
+              <th colspan="5" class="section-header-2">PERFORMANCE</th>
+            <tr>
+            <tr>
+              <th> Throughput </th>
+              <td> ~60 req/s </td>
+              <td> ~60 req/s </td>
+              <td data-toggle="modal" data-target="#perfModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'throughput');"> <span class="best glyphicon glyphicon-thumbs-up"></span> ~250 req/s </td>
+              <td> ~80 req/s </td>
+            </tr>
+            <tr>
               <th colspan="5" class="section-header">DEVELOPMENT EFFORT</th>
             <tr>
               <th> Database setup </th>
@@ -103,16 +113,6 @@
               <td> Auto, manual SSL certs </td>
               <td data-toggle="modal" data-target="#sslModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'gateway')"> <span class="best glyphicon glyphicon-thumbs-up"></span> Auto </td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Auto </td>
-            </tr>
-            <tr>
-              <th colspan="5" class="section-header-2">PERFORMANCE</th>
-            <tr>
-            <tr>
-              <th> Throughput </th>
-              <td> ~60 req/s </td>
-              <td> ~60 req/s </td>
-              <td data-toggle="modal" data-target="#perfModal" onclick="ga('send', 'event', 'compare-modal', 'modal-click' , 'throughput');"> <span class="best glyphicon glyphicon-thumbs-up"></span> ~250 req/s </td>
-              <td> ~80 req/s </td>
             </tr>
             <tr>
               <th colspan="5" class="section-header">FLEXIBILITY</th>
@@ -213,26 +213,9 @@
               </ul>
               Different number of threads were spawned to simulate low (10), standard (200) and heavy (1000) load conditions.
             </p>
-            <h4>Hasura Data API</h4>
+            
             <p>
-              For this exercise, Hasura Data API was used as the backend.
-            </p>
-            <p>
-              Hasura Data API performs so well because: <br/>
-              <ul>
-                <li>
-                  The Data API is written in Haskell and is optimized to exploit
-                  mutli-core CPUs to achieve high concurrency.
-                </li>
-                <li>
-                  The Data API is also optimized to use PostgreSQL features which
-                  help in the performance. For example, it uses prepared
-                  statements and JSON aggregation queries of PostgreSQL.
-                </li>
-                <li>
-                  The Data API does fast JSON serialization/deserialization.
-                </li>
-              </ul>
+              <h5>To see why Hasura performs so well, check out the subsequent sections!</h5>
             </p>
           </div>
         </div>
@@ -259,19 +242,29 @@
               schema and permissions.
             </p>
             <hr/>
-            Hasura BaaS components speed up your development time tremendously: <br/>
-            <ul>
-              <li>
-                As soon as your create your database schema, you get a JSON based HTTP
-                query API readily available on your data, with permissions and
-                access control.<br/><br/>
-                <img src="/images/data-api.png" class="img-responsive" /><br/>
-              </li>
-              <li>
-                Readymade Auth APIs for authentication and user management.<br/><br/>
+              Hasura BaaS components speed up your development time tremendously.<br/><br/>
+              Data API: As soon as your create your database schema, you get a JSON based HTTP query API readily available on your data, with permissions and access control.<br/><br/>
+              <img src="/images/data-api.png" class="img-responsive" /><br/>
+            <p>
+              Hasura Data API performs so well because: <br/>
+              <ul>
+                <li>
+                  The Data API is written in Haskell and is optimized to exploit
+                  mutli-core CPUs to achieve high concurrency.
+                </li>
+                <li>
+                  The Data API is also optimized to use PostgreSQL features which
+                  help in the performance. For example, it uses prepared
+                  statements and JSON aggregation queries of PostgreSQL.
+                </li>
+                <li>
+                  The Data API does fast JSON serialization/deserialization.
+                </li>
+              </ul>
+            </p>
+
+            Auth APIs: Readymade Auth APIs for authentication and user management.<br/><br/>
                 <img src="/images/auth-apis.png" class="img-responsive" />
-              </li>
-            </ul>
           </div>
         </div>
       </div>
