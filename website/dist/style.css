@@ -6368,7 +6368,15 @@ button.close {
 #main {
   min-height: 100vh;
   padding: 20px;
-  background-color: #ffffff;
+  padding-top: 75px;
+  background: #ffffff;
+  background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ffffff), color-stop(100%, #fffaf2));
+  background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
+  background: -o-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
+  background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
+  background: radial-gradient(ellipse at center, #ffffff 0%, #fffaf2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#fffaf2', GradientType=1);
 }
 #main th,
 #main td {
@@ -6410,17 +6418,50 @@ button.close {
   color: #c18787;
   font-style: italic;
 }
-#main .section-header-2 {
-  text-align: center;
-  color: #c18787;
-  font-style: italic;
-  font-size: 16px;
-}
 @media (max-width: 991px) {
   #main .section-header {
     text-align: left;
   }
 }
-.modal {
-  font-size: 1.1em;
+#header {
+  height: 66px;
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 5px 7px 0 #e3e3e3;
+  z-index: 10;
+}
+#header #logo {
+  height: 66px;
+  float: left;
+  display: flex;
+  padding-left: 20px;
+  align-items: center;
+}
+#header #logo #narak {
+  height: 50px;
+}
+#header #logo #hasura {
+  height: 23px;
+}
+#header #explore {
+  float: right;
+  display: flex;
+  height: 66px;
+  align-items: center;
+  padding-right: 10px;
+}
+#header #explore a.btn {
+  border-radius: 0;
+  font-size: 16px;
+}
+#header #title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 66px;
+  z-index: -1;
+  position: absolute;
+  margin: 0;
 }
