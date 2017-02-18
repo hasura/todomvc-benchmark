@@ -6370,13 +6370,13 @@ button.close {
   padding: 20px;
   padding-top: 75px;
   background: #ffffff;
-  background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ffffff), color-stop(100%, #fffaf2));
-  background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
-  background: -o-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
-  background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%, #fffaf2 100%);
-  background: radial-gradient(ellipse at center, #ffffff 0%, #fffaf2 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#fffaf2', GradientType=1);
+  background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #ffffff 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ffffff), color-stop(100%, #ffffff));
+  background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #ffffff 100%);
+  background: -o-radial-gradient(center, ellipse cover, #ffffff 0%, #ffffff 100%);
+  background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%, #ffffff 100%);
+  background: radial-gradient(ellipse at center, #ffffff 0%, #ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
 }
 #main th,
 #main td {
