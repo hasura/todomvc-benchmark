@@ -9,7 +9,7 @@
     <title>Compare | Hasura</title>
 
     <!-- Bootstrap -->
-    <link href="dist/style-3e80b6b.css" rel="stylesheet">
+    <link href="dist/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,10 +45,10 @@
             <br/>
             We benchmarked a <a target="_blank" href="http://todomvc.com/"> Todo </a> application backend built using 4 different platforms/frameworks (maintaining the cost at ~$40 for each) i.e.<br/>
             <ul>
-              <li> Rails app deployed on DigitalOcean VM</li>
-              <li> Rails app deployed using Heroku </li>
-              <li> App built and deployed using Hasura on DigitalOcean VM</li>
-              <li> App built using Firebase</li>
+              <li> Rails app deployed on DigitalOcean VM ($40 plan)</li>
+              <li> Rails app deployed using Heroku (1 dyno, 10M postgres)</li>
+              <li> App built and deployed using Hasura on DigitalOcean VM ($40 plan)</li>
+              <li> App built using Firebase (Blaze plan)</li>
             </ul>
             <br/>
 <!--             The backend for each app powers the following features:
@@ -74,7 +74,7 @@
           </thead>
           <tbody>
             <tr>
-              <td rowspan="5"> BaaS </td>
+              <td rowspan="5" class="center-title"> BaaS </td>
             </tr>
 <!--             <tr>
               <th> Infrastructure ($40 budget) </th>
@@ -91,14 +91,14 @@
               <td bgcolor="#ddd"> No BaaS </td>
               <td bgcolor="#ddd"> No BaaS </td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Auth, Data </td>
-              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Auth, Data and many more </td>
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Auth, Data (+ realtime) and more </td>
             </tr>
             <tr>
-              <th> Data APIs coverage </th>
+              <th> Data APIs power</th>
               <td bgcolor="#ddd"> No BaaS </td>
               <td bgcolor="#ddd"> No BaaS </td>
-              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> High SQL support </td>
-              <td> <span class="glyphicon glyphicon-remove worst"></span> Low SQL support</td>
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> SQL power, bulk queries</td>
+              <td> <span class="glyphicon glyphicon-remove worst"></span> Basic CRUD queries</td>
             </tr>
             <tr>
               <th> Throughput </th>
@@ -110,15 +110,15 @@
             <tr>
               <th> Lines of code </th>
               <td> 200 <a target="blank" href="https://github.com/hasura/todomvc-benchmark/tree/master/todo-railsapi" onclick="ga('send', 'event', 'compare', 'source_link' , 'rails')">
-                  (source: rails ) </a> </td>
+                  (source: rails) </a> </td>
               <td> 200 <a target="blank" href="https://github.com/hasura/todomvc-benchmark/tree/master/todo-heroku" onclick="ga('send', 'event', 'compare', 'source_link' , 'rails-heroku')">
-                  ( source: rails-heroku ) </a> </td>
+                  (source: rails-heroku) </a> </td>
               <td data-toggle="modal" data-target="#baasModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'baas');"> <span class="best glyphicon glyphicon-thumbs-up"></span> 30 <a target="blank" href="https://github.com/hasura/todomvc-benchmark/tree/master/todo-hasura" onclick="ga('send', 'event', 'compare', 'source_link' , 'rails-heroku')">
-                  ( source: hasura )</a></td>
+                  (source: hasura)</a></td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> 20 ( source: NA ) </td>
             </tr>
             <tr>
-              <td rowspan="6"> PaaS </td>
+              <td rowspan="6" class="center-title"> PaaS </td>
             </tr>
             <tr>
               <th> One-click Deployment </th>
@@ -156,7 +156,7 @@
               <td> <span class="glyphicon glyphicon-remove worst"></span> High lock-in </td>
             </tr>
             <tr>
-              <td rowspan="5"> Provisioning </td>
+              <td rowspan="5" class="center-title"> Provisioning </td>
             </tr>
             <tr>
               <th> Infra provider</th>
