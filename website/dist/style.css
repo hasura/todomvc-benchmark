@@ -6402,9 +6402,6 @@ button.close {
 }
 #main td[data-toggle="modal"] {
   cursor: pointer;
-  -webkit-box-shadow: 0px 4px 8px 0px #cccccc;
-  -moz-box-shadow: 0px 4px 8px 0px #cccccc;
-  box-shadow: 0px 4px 8px 0px #cccccc;
 }
 #main th {
   color: #698592;
@@ -6440,7 +6437,8 @@ button.close {
 #header #logo #hasura {
   height: 23px;
 }
-#header #explore {
+#header #explore,
+.explore-btn {
   float: right;
   display: flex;
   height: 66px;
@@ -6460,4 +6458,14 @@ button.close {
   z-index: -1;
   position: absolute;
   margin: 0;
+}
+
+tr td:nth-child(4) {
+  border-right: 1px solid #f0ad4e;
+  border-left: 1px solid #f0ad4e;
+}
+
+.header-highlight {
+  color: #000 !important;
+  background: #f0ad4e;
 }

@@ -68,13 +68,13 @@
               <th> </th>
               <th> BARE VM </th>
               <th> HEROKU </th>
-              <th> HASURA </th>
+              <th class="header-highlight"> HASURA </th>
               <th> FIREBASE </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td rowspan="5" class="center-title"> BaaS </td>
+              <td rowspan="5" class="center-title"> BaaS<br>( Backend as a Service )<br>components </td>
             </tr>
 <!--             <tr>
               <th> Infrastructure ($40 budget) </th>
@@ -98,7 +98,7 @@
               <td bgcolor="#ddd"> No BaaS </td>
               <td bgcolor="#ddd"> No BaaS </td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> SQL power, bulk queries</td>
-              <td> <span class="glyphicon glyphicon-remove worst"></span> Basic CRUD queries</td>
+              <td> <span class="glyphicon glyphicon-thumbs-down worst"></span> Basic CRUD queries</td>
             </tr>
             <tr>
               <th> Throughput </th>
@@ -118,7 +118,7 @@
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> 20 ( source: NA ) </td>
             </tr>
             <tr>
-              <td rowspan="6" class="center-title"> PaaS </td>
+              <td rowspan="6" class="center-title"> PaaS<br>( Platform as a Service )<br>components </td>
             </tr>
             <tr>
               <th> One-click Deployment </th>
@@ -132,14 +132,14 @@
               <td bgcolor="#ddd"> No PaaS </td>
               <td> Supported technologies</td>
               <td data-toggle="modal" data-target="#ccModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'custom-code');"> <span class="glyphicon glyphicon-thumbs-up best"></span> Anything </td>
-              <td> <span class="glyphicon glyphicon-remove worst"></span> No </td>
+              <td> <span class="glyphicon glyphicon-thumbs-down worst"></span> No </td>
             </tr>
             <tr>
               <th> Access remote services</th>
               <td bgcolor="#ddd"> No PaaS</td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Using heroku-cli </td>
               <td data-toggle="modal" data-target="#depModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'deployment');"> <span class="best glyphicon glyphicon-thumbs-up"></span> Using ssh tunnels</td>
-              <td> <span class="glyphicon glyphicon-remove worst"></span> No </td>
+              <td> <span class="glyphicon glyphicon-thumbs-down worst"></span> No </td>
             </tr>
             <tr>
               <th> SSL </th>
@@ -153,10 +153,10 @@
               <td bgcolor="#ddd"> No PaaS </td>
               <td> Deployment lock-in </td>
               <td data-toggle="modal" data-target="#dbOwnerModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'db-ownership');"> <span class="glyphicon glyphicon-thumbs-up best"></span> No Lock-in </td>
-              <td> <span class="glyphicon glyphicon-remove worst"></span> High lock-in </td>
+              <td> <span class="glyphicon glyphicon-thumbs-down worst"></span> High lock-in </td>
             </tr>
             <tr>
-              <td rowspan="5" class="center-title"> Provisioning </td>
+              <td rowspan="5" class="center-title"> Provisioning Infra</td>
             </tr>
             <tr>
               <th> Infra provider</th>
@@ -167,9 +167,9 @@
             </tr>
             <tr>
               <th> Infra ownership</th>
-              <td> <span class="glyphicon glyphicon-thumbs-up best"></span> </td>
+              <td> <span class="glyphicon glyphicon-ok best"></span> </td>
               <td> <span class="glyphicon glyphicon-remove worst"> </td>
-              <td data-toggle="modal" data-target="#infraOwnModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'infra-ownership');"> <span class="glyphicon glyphicon-thumbs-up best"></span> </td>
+              <td data-toggle="modal" data-target="#infraOwnModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'infra-ownership');"> <span class="glyphicon glyphicon-ok best"></span> </td>
               <td> <span class="glyphicon glyphicon-remove worst"></td>
             </tr>
 
