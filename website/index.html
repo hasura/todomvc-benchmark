@@ -46,7 +46,7 @@
             We benchmarked a <a target="_blank" href="http://todomvc.com/"> Todo </a> application backend built using 4 different platforms/frameworks (maintaining the cost at ~$40 for each) i.e.<br/>
             <ul>
               <li> Rails app deployed on DigitalOcean VM ($40 plan)</li>
-              <li> Rails app deployed using Heroku (1 dyno, 10M postgres)</li>
+              <li> Rails app deployed using Heroku (Standard-1X dyno, 10M postgres)</li>
               <li> App built and deployed using Hasura on DigitalOcean VM ($40 plan)</li>
               <li> App built using Firebase (Blaze plan)</li>
             </ul>
@@ -90,21 +90,21 @@
               <th> In-built APIs</th>
               <td bgcolor="#ddd"> No BaaS </td>
               <td bgcolor="#ddd"> No BaaS </td>
-              <td> Auth, Data </td>
+              <td> <a href="#" data-toggle="modal" data-target="#baasModal"> Auth, Data </a></td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Auth, Data (+ realtime) and more </td>
             </tr>
             <tr>
               <th> Data APIs power</th>
               <td bgcolor="#ddd"> No BaaS </td>
               <td bgcolor="#ddd"> No BaaS </td>
-              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> SQL power, bulk queries</td>
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> <a target="_blank" href="https://blog.hasura.io/data-apis-on-postgres-hasurabaas-28c578c42a97">SQL power, bulk queries</a></td>
               <td> Basic CRUD queries</td>
             </tr>
             <tr>
               <th> Throughput </th>
               <td> ~60req/s </td>
               <td> ~60req/s </td>
-              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> ~250req/s </td>
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> <a href="#" data-toggle="modal" data-target="#perfModal"> ~250req/s </a></td>
               <td> ~80req/s </td>
             </tr>
             <tr>
@@ -113,7 +113,7 @@
                   (source: rails) </a> </td>
               <td> 200 <a target="blank" href="https://github.com/hasura/todomvc-benchmark/tree/master/todo-heroku" onclick="ga('send', 'event', 'compare', 'source_link' , 'rails-heroku')">
                   (source: rails-heroku) </a> </td>
-              <td data-toggle="modal" data-target="#baasModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'baas');"> <span class="best glyphicon glyphicon-thumbs-up"></span> 30 <a target="blank" href="https://github.com/hasura/todomvc-benchmark/tree/master/todo-hasura" onclick="ga('send', 'event', 'compare', 'source_link' , 'rails-heroku')">
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> 30 <a target="blank" href="https://github.com/hasura/todomvc-benchmark/tree/master/todo-hasura" onclick="ga('send', 'event', 'compare', 'source_link' , 'rails-heroku')">
                   (source: hasura)</a></td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> 20 ( source: NA ) </td>
             </tr>
@@ -124,35 +124,35 @@
               <th> One-click Deployment </th>
               <td bgcolor="#ddd"> No PaaS</td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Yes, using git </td>
-              <td data-toggle="modal" data-target="#depModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'deployment');"> <span class="best glyphicon glyphicon-thumbs-up"></span> Yes, using git or UI</td>
+              <td> <a href="https://blog.hasura.io/deploy-any-docker-image-hasurapaas-b74fe6d924a4" target="_blank"> Yes, using git or UI</a></td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Already hosted</td>
             </tr>
             <tr>
               <th> Deploy custom code </th>
               <td bgcolor="#ddd"> No PaaS </td>
               <td> Supported technologies</td>
-              <td data-toggle="modal" data-target="#ccModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'custom-code');"> <span class="glyphicon glyphicon-thumbs-up best"></span> Anything </td>
-              <td> <span class="glyphicon glyphicon-thumbs-down worst"></span> No </td>
+              <td> <a href="https://blog.hasura.io/deploy-with-git-hasurapaas-731ca57c8284#.8h2dk0sgk" target="_blank"> Anything</a></td>
+              <td> <span class="glyphicon glyphicon-remove worst"></span> </td>
             </tr>
             <tr>
               <th> Access remote services</th>
               <td bgcolor="#ddd"> No PaaS</td>
               <td> <span class="best glyphicon glyphicon-thumbs-up"></span> Using heroku-cli </td>
-              <td data-toggle="modal" data-target="#depModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'deployment');"> <span class="best glyphicon glyphicon-thumbs-up"></span> Using ssh tunnels</td>
-              <td> <span class="glyphicon glyphicon-thumbs-down worst"></span> No </td>
+              <td> <span class="best glyphicon glyphicon-thumbs-up"></span> <a href="https://blog.hasura.io/ssh-access-to-your-microservice-cluster-hasurapaas-7406ec04314d" target="_blank"> Using ssh tunnels</a></td>
+              <td> <span class="glyphicon glyphicon-remove worst"></span> </td>
             </tr>
             <tr>
               <th> SSL </th>
               <td bgcolor="#ddd"> No PaaS</td>
               <td> Manual </td>
-              <td data-toggle="modal" data-target="#sslModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'gateway')"> <span class="glyphicon glyphicon-thumbs-up best"></span> Auto </td>
+              <td> <span class="glyphicon glyphicon-thumbs-up best"></span><a href="https://blog.hasura.io/api-gateway-with-https-for-all-the-domainz-sub-domainz-hasurapaas-7d914a07a0c9" target="_blank"> Auto</a></td>
               <td> <span class="glyphicon glyphicon-thumbs-up best"></span> Auto </td>
             </tr>
             <tr>
               <th> Vendor Lock-in </th>
               <td bgcolor="#ddd"> No PaaS </td>
               <td> Deployment lock-in </td>
-              <td data-toggle="modal" data-target="#dbOwnerModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'db-ownership');"> <span class="glyphicon glyphicon-thumbs-up best"></span> No Lock-in </td>
+              <td> <span class="glyphicon glyphicon-thumbs-up best"></span> <a href="#" data-toggle="modal" data-target="#vendorModal"> No Lock-in </a></td>
               <td> <span class="glyphicon glyphicon-thumbs-down worst"></span> High lock-in </td>
             </tr>
             <tr>
@@ -162,14 +162,14 @@
               <th> Infra provider</th>
               <td> <span class="glyphicon glyphicon-thumbs-up best"></span> Your choice </td>
               <td> Vendor choice </td>
-              <td data-toggle="modal" data-target="#infraOwnModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'infra-ownership');"><span class="glyphicon glyphicon-thumbs-up best"></span> Your choice </td>
+              <td> <span class="glyphicon glyphicon-thumbs-up best"></span> <a href="https://blog.hasura.io/provision-on-any-infrastructure-with-hasura-io-57442813c85c" target="_blank">Your choice</a></td>
               <td> Vendor choice </td>
             </tr>
             <tr>
               <th> Infra ownership</th>
               <td> <span class="glyphicon glyphicon-ok best"></span> </td>
               <td> <span class="glyphicon glyphicon-remove worst"> </td>
-              <td data-toggle="modal" data-target="#infraOwnModal" onclick="ga('send', 'event', 'compare', 'modal-click' , 'infra-ownership');"> <span class="glyphicon glyphicon-ok best"></span> </td>
+              <td> <span class="glyphicon glyphicon-ok best"></span> </td>
               <td> <span class="glyphicon glyphicon-remove worst"></td>
             </tr>
 
@@ -243,18 +243,18 @@
             <h4 class="modal-title" id="baasModalLabel">Hasura BaaS components</h4>
           </div>
           <div class="modal-body">
-            <p>
-              For details on loc for other platforms/frameworks, please refer to their respective source code (<i>linked at the bottom of the page</i>)
-            </p><br>
+<!--             <p>
+              For details on loc for other platforms/frameworks, please refer to their respective source code
+            </p><br> -->
 
             <h5> Hasura provides built-in Data + Auth APIs. </h5>
             <br/><img src="/images/baas.png" class="img-responsive" /><br/><br/>
-            <p>
+<!--             <p>
               For this exercise, the Data and Auth APIs were used directly as
               the backend. ~30 lines of code were written for the database
               schema and permissions.
             </p>
-            <hr/>
+  -->           <hr/>
               Hasura BaaS components speed up your development time tremendously.<br/><br/>
               <b>Data API:</b> As soon as your create your database schema, you get a JSON based HTTP query API readily available on your data, with permissions and access control.<br/><br/>
               <img src="/images/data-api.png" class="img-responsive" /><br/>
@@ -380,9 +380,34 @@
             <h4 class="modal-title" id="infraOwnModalLabel">Owning your infrastructure</h4>
           </div>
           <div class="modal-body">
-            Hasura tooling is installed on your own infrastructure.<br/>
+            <p>Hasura tooling is installed on your own infrastructure.</p>
             <img src="/images/infra.png" class="img-responsive" />
             <br/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="vendorModal" tabindex="-1" role="dialog" aria-labelledby="vendorModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="vendorModalLabel">No Vendor Lock-in</h4>
+          </div>
+          <div class="modal-body">
+            <p> Hasura tooling is installed on your own infrastructure.
+            <img src="/images/infra.png" class="img-responsive" />
+            </p>
+            <p>
+              Hasura provides complete ownership to its pre-installed PostgreSQL instance. Access it like your own private database.
+            </p>
+            <p>
+              Hasura uses Kubernetes to manage deployment, use kubectl to manage deployments yourself.
+            </p>
+            <p>
+              Hasura tooling is built on open-source components and is installed on your own infrastructure to avoid lock-in.
+            </p>
           </div>
         </div>
       </div>
